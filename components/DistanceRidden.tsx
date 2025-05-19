@@ -5,17 +5,16 @@ import * as Location from "expo-location";
 import type { LocationObject } from "expo-location";
 import * as TaskManager from "expo-task-manager";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { updateLocationPins } from "./StoreLocation";
 
 const DistanceRidden = () => {
   const [locations, updateLocations] = useState<LocationObject[]>([]);
 
-  const locationPins = locations.map((location) => ({
-    latitude: location.coords.latitude,
-    longitude: location.coords.longitude,
+  const locationPins = locations.map((locations) => ({
+    latitude: locations.coords.latitude,
+    longitude: locations.coords.longitude,
+    timestamp: locations.timestamp,
+    speed: locations.coords.speed
   }));
-  
-  updateLocationPins(locationPins);
 
   const LOCATION_TASK_NAME = "background-location-task";
 
