@@ -1,9 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState, useEffect } from "react";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 const StopWatch = () => {
-  const [seconds, setSeconds] = useState(58);
-  const [minutes, setMinutes] = useState(59);
+  const [seconds, setSeconds] = useState(0);
+  const [minutes, setMinutes] = useState(0);
   const [hours, setHours] = useState(0);
 
   const [isRunning, setIsRunning] = useState(false);
@@ -36,13 +37,17 @@ const StopWatch = () => {
     setMinutes(0);
   }
 
-
   return (
-    <View style={{ backgroundColor: "white" }}>
-      <Text>
-        {String(hours).padStart(2, '0')}:{String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
+    <View style={styles.container}>
+      <View style={{ flexDirection: "row", alignItems: 'center' }}>
+        <MaterialIcons name="access-time" size={16} color="white" />
+        <Text style={{ color: "white", fontSize: 16, paddingLeft: 2 }}>Ride Timer</Text>
+      </View>
+      <Text style={{ color: "#da2525", fontSize: 24, paddingTop: 3 }}>
+        {String(hours).padStart(2, "0")}:{String(minutes).padStart(2, "0")}:
+        {String(seconds).padStart(2, "0")}
       </Text>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         onPress={toggleWatch}
         style={{ backgroundColor: "green" }}
       >
@@ -59,11 +64,19 @@ const StopWatch = () => {
         style={{ backgroundColor: "yellow" }}
       >
         <Text>Reset</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };
 
 export default StopWatch;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#101726",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 15,
+  },
+});

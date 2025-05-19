@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "app/(tabs)/trackingMap.tsx", "app/(tabs)/test.tsx"  ]
+, "app/(tabs)/TrackingMap.tsx", "app/(tabs)/test.tsx"  ]
 }
