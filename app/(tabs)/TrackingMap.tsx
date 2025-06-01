@@ -1,13 +1,28 @@
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import React, { useState, useEffect } from "react";
-import LeanAngle from "@/components/LeanAngle";
-import StopWatch from "@/components/StopWatch";
-import DistanceRidden from "@/components/DistanceRidden";
-import Acceleration from "@/components/Acceleration";
-import AverageSpeed from "@/components/AverageSpeed";
-import TopSpeed from "@/components/TopSpeed";
+import {
+  StopWatch,
+  DistanceRidden,
+  LeanAngle,
+  Acceleration,
+  AverageSpeed,
+  TopSpeed,
+  StartRideButton
+} from "@/components/export";
+import { useDispatch, useSelector, UseSelector } from "react-redux";
+import { RootState } from "../state/store";
+import { activate, deactivate } from "../state/activeRide/ActiveRideSlice";
 
 const TrackingMap = () => {
+
+
   return (
     <ScrollView style={{ paddingTop: 5 }}>
       <View style={styles.topStats}>
@@ -20,6 +35,7 @@ const TrackingMap = () => {
         <AverageSpeed />
         <TopSpeed />
       </View>
+      <StartRideButton />
     </ScrollView>
   );
 };
@@ -45,5 +61,13 @@ const styles = StyleSheet.create({
     gap: 10,
     marginTop: 20,
     paddingBottom: 100,
-  }
+  },
+  startRide: {
+    backgroundColor: "red",
+    borderRadius: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    marginTop: 15,
+  },
 });

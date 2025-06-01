@@ -5,10 +5,14 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TouchableOpacity,
   useColorScheme,
   View,
 } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { recentRides } from "@/assets/recentRidesInfo";
+import RecentRidesCard from "@/components/RecentRidesCard";
+import {StartRideButton} from "@/components/export";
 
 export default function HomeScreen() {
   const isDarkMode = useColorScheme() === "dark";
@@ -22,68 +26,59 @@ export default function HomeScreen() {
     ),
   };
 
+
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.canvas}>
         <ScrollView style={{ width: "100%" }}>
           //Start Ride Button
-          <View style={styles.startRide}>
-            <MaterialCommunityIcons
-              name="flag-checkered"
-              size={48}
-              color="white"
-            />
-            <Text style={{ color: "white", fontSize: 22, fontWeight: "800" }}>
-              Start Ride
-            </Text>
-          </View>
+          <StartRideButton />
           //Stats Preview
           <View style={styles.stats}>
             <View style={styles.container}>
-              <Text style={{ color: "#34e61d", fontWeight: '600' }}>Max Lean Angle</Text>
-              <Text style={{color: 'white', fontSize: 22, fontWeight: '800'}}>42°</Text>
+              <Text style={{ color: "#34e61d", fontWeight: "600" }}>
+                Max Lean Angle
+              </Text>
+              <Text style={{ color: "white", fontSize: 22, fontWeight: "800" }}>
+                42°
+              </Text>
             </View>
             <View style={styles.container}>
-              <Text style={{ color: "#34e61d", fontWeight: '600' }}>Total Rides</Text>
-              <Text style={{color: 'white', fontSize: 22, fontWeight: '800'}}>24</Text>
+              <Text style={{ color: "#34e61d", fontWeight: "600" }}>
+                Total Rides
+              </Text>
+              <Text style={{ color: "white", fontSize: 22, fontWeight: "800" }}>
+                24
+              </Text>
             </View>
           </View>
           //Recent Rides
           <View style={styles.recentRides}>
             //Recent Rides Header
             <View style={styles.recentRidesHeader}>
-              <Text style={{color: 'white', fontSize: 20, fontWeight: '700'}}>Recent Rides</Text>
+              <Text style={{ color: "white", fontSize: 20, fontWeight: "700" }}>
+                Recent Rides
+              </Text>
               <View style={{ flex: 1, alignItems: "flex-end" }}>
-                <Text style={{ color: "red", fontWeight: '500' }}>View All</Text>
+                <Text style={{ color: "red", fontWeight: "500" }}>
+                  View All
+                </Text>
               </View>
             </View>
             // Recent ride info box
-            <View style={[styles.container, styles.recentRidesContainer]}>
-              <View style={{ flex: 1, alignItems: "flex-start" }}>
-                <Text style={[styles.whiteText, {fontSize: 16}]}>Mountain Loop</Text>
-                <Text style={{ color: "#8a909c" }}>Apr 30, 2025</Text>
-                <Text style={{ color: "white", marginTop: 5 }}>
-                  {icons.timeIcon} 2h 15m
-                </Text>
-              </View>
-              <View style={{ gap: 10, alignItems: "flex-end", flex: 1 }}>
-                <Text style={styles.recentRidesMileage}>45.2 mi</Text>
-                <Text style={styles.whiteText}>{icons.angleIcon} Max 48°</Text>
-              </View>
-            </View>
-            <View style={[styles.container, styles.recentRidesContainer]}>
-              <View style={{ flex: 1, alignItems: "flex-start" }}>
-                <Text style={[styles.whiteText, {fontSize: 16}]}>Coastal Loop</Text>
-                <Text style={{ color: "#8a909c" }}>Apr 28, 2025</Text>
-                <Text style={{ color: "white", marginTop: 5 }}>
-                  {icons.timeIcon} 1h 45m
-                </Text>
-              </View>
-              <View style={{ gap: 10, alignItems: "flex-end", flex: 1 }}>
-                <Text style={styles.recentRidesMileage}>32.8 mi</Text>
-                <Text style={styles.whiteText}>{icons.angleIcon} Max 39°</Text>
-              </View>
-            </View>
+            {recentRides.map((ride, index) => {
+              return (
+                <RecentRidesCard
+                  key={index}
+                  title={ride.title}
+                  datentime={ride.datentime}
+                  duration={ride.duration}
+                  distance={ride.distance}
+                  leanAngle={ride.leanAngle}
+                />
+              );
+            })}
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -109,7 +104,7 @@ const styles = StyleSheet.create({
   },
   whiteText: {
     color: "#FFFFFF",
-    fontWeight: '600'
+    fontWeight: "600",
   },
   darkText: {
     color: "#FFFFFF",

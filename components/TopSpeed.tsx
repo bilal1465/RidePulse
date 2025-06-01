@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { getDistance } from "geolib";
 import { locationPins } from "./StoreLocation";
 
 const TopSpeed = () => {
