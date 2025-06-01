@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Accelerometer } from "expo-sensors";
-import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import { AnimatedCircularProgress } from "react-native-circular-progress";
+import { RootState } from "@/app/state/store";
+import { useSelector } from "react-redux";
 
 const LeanAngle = () => {
   const [accelormeterCoordinates, setAccelormeterCoordinates] = useState({
@@ -12,6 +14,7 @@ const LeanAngle = () => {
 
   // const [straightUp, setStraightUp] = useState(0);
   const [currentLean, setCurrentLean] = useState(0);
+  const activeRide = useSelector((state: RootState) => state.activeRide.value);
 
   useEffect(() => {
     let angle = Math.round(
@@ -40,7 +43,13 @@ const LeanAngle = () => {
 
   Accelerometer.setUpdateInterval(500);
 
-  Accelerometer.addListener(setAccelormeterCoordinates);
+  useEffect(() => {
+    if (activeRide) {
+      Accelerometer.addListener(setAccelormeterCoordinates);
+    } else {
+      Accelerometer.addListener(setAccelormeterCoordinates).remove();
+    }
+  });
 
   const fill = (currentLean / 180) * 100;
 
@@ -53,7 +62,7 @@ const LeanAngle = () => {
         <Text style={{ fontWeight: "600" }}>Calibrate</Text>
       </TouchableOpacity> */}
       {/* <Text style={styles.text}>{straightUp}</Text> */}
-      <Text style={{color: 'white', fontSize: 18}}>Lean Angle</Text>
+      <Text style={{ color: "white", fontSize: 18 }}>Lean Angle</Text>
       <AnimatedCircularProgress
         size={150}
         width={15}
@@ -63,15 +72,12 @@ const LeanAngle = () => {
         rotation={-90} // start from top (default is 0)
         arcSweepAngle={180}
       >
-        {
-          () => (
-            <Text style={{ fontSize: 24, color: '#dc2626' }}>
-              {currentLean.toFixed(1)}°
-            </Text>
-          )
-        }
+        {() => (
+          <Text style={{ fontSize: 24, color: "#dc2626" }}>
+            {currentLean.toFixed(1)}°
+          </Text>
+        )}
       </AnimatedCircularProgress>
-
     </View>
   );
 };
