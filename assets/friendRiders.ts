@@ -1,6 +1,6 @@
-export const ridersInfo = [
+export const friendRiders = [
     {
-      name: "Mike R.",
+      name: "Julian R.",
       age: "25",
       tags: ["Sport Rider"],
       bike: "Ducati V4R",
@@ -8,7 +8,7 @@ export const ridersInfo = [
       avatar: "/Users/bilaldhillon/Documents/Rider App/RidePulse/assets/images/profilepic.png",
     },
     {
-      name: "Sarah K.",
+      name: "Malik K.",
       age: "27",
       tags: ["Track Day"],
       bike: "BMW S1000RR",
@@ -16,7 +16,7 @@ export const ridersInfo = [
       avatar: "/Users/bilaldhillon/Documents/Rider App/RidePulse/assets/images/profilepic.png",
     },
     {
-      name: "Alex M.",
+      name: "Abdullah M.",
       age: "27",
       tags: ["Street Rider"],
       bike: "Yamaha R1",

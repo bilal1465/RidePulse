@@ -17,8 +17,6 @@ export type riderProps = {
   avatar: ImageSourcePropType | string;
 };
 
-
-
 const RiderCard: React.FC<riderProps> = ({
   name,
   age,
@@ -46,24 +44,29 @@ const RiderCard: React.FC<riderProps> = ({
         <View>
           <Text style={{ color: "#9ba2ad", fontSize: 16 }}>{bio}</Text>
         </View>
-        <View style={{ flex: 1, flexDirection: "row" }}>
-          <Text
-            style={{
-              color: "white",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#ef4444",
-              padding: 5,
-              borderRadius: 15,
-              flex: 3,
-            }}
-          >
-            Invite to Ride
-          </Text>
+        <View style={{ flex: 1, flexDirection: "row", alignItems: 'center', gap: 5 }}>
+          <View>
+            <Text
+              style={{
+                color: "white",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#ef4444",
+                paddingHorizontal: 50,
+                paddingVertical: 10,
+                borderRadius: 10,
+                flex: 3,
+                fontWeight: '700',
+                fontSize:15
+              }}
+            >
+              Invite to Ride
+            </Text>
+          </View>
           <MaterialIcons
             style={{ flex: 1 }}
             name="chat-bubble-outline"
-            size={24}
+            size={35}
             color="white"
           />
         </View>
