@@ -14,10 +14,10 @@ export const recentRides = [
     leanAngle: 39,
   },
   {
-    title: "Coastal Loop",
-    datentime: "Apr 28, 2025",
-    duration: "1h 45m",
-    distance: 32.8,
-    leanAngle: 39,
+    title: "Dragon Loop",
+    datentime: "Jan 28, 2025",
+    duration: "1h 02m",
+    distance: 100.2,
+    leanAngle: 63,
   },
 ];

@@ -10,9 +10,10 @@ import {
   View,
 } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import { recentRides } from "@/assets/recentRidesInfo";
+import { recentRides } from "@/app/assets/recentRidesInfo";
 import RecentRidesCard from "@/components/RecentRidesCard";
-import {StartRideButton} from "@/components/export";
+import { StartRideButton } from "@/components/export";
+import { router } from "expo-router";
 
 export default function HomeScreen() {
   const isDarkMode = useColorScheme() === "dark";
@@ -25,8 +26,6 @@ export default function HomeScreen() {
       <MaterialCommunityIcons name="angle-acute" size={20} color="white" />
     ),
   };
-
-
 
   return (
     <SafeAreaProvider>
@@ -60,23 +59,42 @@ export default function HomeScreen() {
               <Text style={{ color: "white", fontSize: 20, fontWeight: "700" }}>
                 Recent Rides
               </Text>
-              <View style={{ flex: 1, alignItems: "flex-end" }}>
+              <TouchableOpacity
+                style={{ flex: 1, alignItems: "flex-end" }}
+                onPress={() => router.push("/RecentRidesList")}
+              >
                 <Text style={{ color: "red", fontWeight: "500" }}>
                   View All
                 </Text>
-              </View>
+              </TouchableOpacity>
             </View>
             // Recent ride info box
             {recentRides.map((ride, index) => {
               return (
-                <RecentRidesCard
-                  key={index}
-                  title={ride.title}
-                  datentime={ride.datentime}
-                  duration={ride.duration}
-                  distance={ride.distance}
-                  leanAngle={ride.leanAngle}
-                />
+                <TouchableOpacity
+                  key={ride.title}
+                  onPress={() => {
+                    router.push({
+                      pathname: "/RideInfoScreen",
+                      params: {
+                        title: ride.title,
+                        date: ride.datentime,
+                        duration: ride.duration,
+                        distance: ride.distance,
+                        leanAngle: ride.leanAngle,
+                      },
+                    });
+                  }}
+                >
+                  <RecentRidesCard
+                    key={index}
+                    title={ride.title}
+                    datentime={ride.datentime}
+                    duration={ride.duration}
+                    distance={ride.distance}
+                    leanAngle={ride.leanAngle}
+                  />
+                </TouchableOpacity>
               );
             })}
           </View>

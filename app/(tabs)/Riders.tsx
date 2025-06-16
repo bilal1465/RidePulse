@@ -6,9 +6,9 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
-import { ridersInfo } from "@/assets/ridersInfo";
+import { ridersInfo } from "@/app/assets/ridersInfo";
 import RiderCard from "@/components/RiderCard";
-import { friendRiders } from "@/assets/friendRiders";
+import { friendRiders } from "@/app/assets/friendRiders";
 
 const Riders = () => {
   const [selected, setSelected] = useState<"friends" | "search" | null>("search");

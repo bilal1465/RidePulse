@@ -4,7 +4,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 export type recentRidesProps = {
-  key: number;
+  key?: number;
   title: string;
   datentime: string;
   duration: string;
