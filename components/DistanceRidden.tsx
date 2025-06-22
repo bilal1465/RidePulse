@@ -8,6 +8,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 const DistanceRidden = () => {
   const [locations, updateLocations] = useState<LocationObject[]>([]);
+  const [distance, setDistance] = useState(0);
 
   const locationPins = locations.map((locations) => ({
     latitude: locations.coords.latitude,
@@ -34,6 +35,7 @@ const DistanceRidden = () => {
       updateLocations((prev) => [...prev, ...locations]);
     }
   });
+
 
   async function startLocationTracking() {
     const { status } = await Location.requestForegroundPermissionsAsync();
@@ -64,6 +66,10 @@ const DistanceRidden = () => {
     console.log("Background location tracking started");
   }
 
+  useEffect(() => {
+    startLocationTracking();
+  }, []) 
+  
   // const stopTracking = () => {
   //   Location.stopLocationUpdatesAsync(LOCATION_TASK_NAME)
   //   console.log("stopped tracking")
@@ -74,7 +80,7 @@ const DistanceRidden = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity onPress={() => updateLocations([])} style={styles.container}>
       <View style={{flexDirection:'row', alignItems: 'center', gap: 2}}>
         <MaterialCommunityIcons
           name="map-marker-distance"
@@ -84,8 +90,8 @@ const DistanceRidden = () => {
         <Text style={{ color: "white", fontSize: 16 }}>Distance</Text>
       </View>
 
-      <Text style={{ color: "#da2525", fontSize: 24 }}>{getDistance()} km</Text>
-    </View>
+      <Text style={{ color: "#da2525", fontSize: 24 }}>{(getDistance() / 1000).toFixed(1)} km</Text>
+    </TouchableOpacity>
   );
 };
 

@@ -3,6 +3,7 @@ import React from "react";
 import { useLocalSearchParams } from "expo-router";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import * as Progress from "react-native-progress";
 
 const RideInfoScreen = () => {
   const { title, date, duration, distance, leanAngle } = useLocalSearchParams();
@@ -25,7 +26,7 @@ const RideInfoScreen = () => {
         </Text>
       </View>
       <View
-        style={{ backgroundColor: "gray", height: "160%", width: "100%" }}
+        style={{ backgroundColor: "gray", height: 250, width: "100%" }}
       ></View>
       <View style={{ flex: 1, flexDirection: "row", gap: 5, marginTop: 5 }}>
         <View style={styles.container}>
@@ -78,6 +79,32 @@ const RideInfoScreen = () => {
             <Text style={{ color: "white", fontSize: 18, fontWeight: "800" }}>
               {leanAngle}°
             </Text>
+          </View>
+        </View>
+      </View>
+      <Text
+        style={{
+          color: "white",
+          fontSize: 24,
+          fontWeight: "600",
+          marginTop: 20,
+        }}
+      >
+        Ride Statistics
+      </Text>
+      <View>
+        <View style={styles.container}>
+          <Text style={{ color: "gray" }}>Top Speed</Text>
+          <View style={{ flexDirection: "row", paddingTop: 5, gap: "70%" }}>
+            <Text style={{ color: "white", fontSize: 22, fontWeight: "600" }}>
+              124 km/h
+            </Text>
+            <MaterialCommunityIcons
+              name="speedometer"
+              size={28}
+              color="#dc2626"
+            />
+              <Progress.Bar color="#dc2626" progress={0.8} width={200} borderColor="black"/>
           </View>
         </View>
       </View>
